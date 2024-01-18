@@ -52,7 +52,9 @@ class RealtimeChartWidget(QWidget):
 
             y_max = max(self.series.points(), key=lambda e: e.y()).y()
             y_min = min(self.series.points(), key=lambda e: e.y()).y()
-            self.axis_y.setRange(y_min, y_max)
+            y_margin = (y_max - y_min) * 0.4
+
+            self.axis_y.setRange(y_min - y_margin, y_max + y_margin)
             self.axis_x.setRange(self._idx - self.maximum_view + 1, self._idx)
 
         if self._idx > 1000000:

@@ -47,3 +47,9 @@ class MainWindow(QMainWindow):
         machine_widget = MachineWidget(machine)
         self.setCentralWidget(machine_widget)
         self.status.showMessage(machine.get_name())
+
+    def closeEvent(self, event) -> None:
+        central_widget = self.centralWidget()
+        if isinstance(central_widget, MachineWidget):
+            central_widget.remove_subject()
+        self.setCentralWidget(None)

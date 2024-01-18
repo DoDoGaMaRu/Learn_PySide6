@@ -20,9 +20,9 @@ class App:
         self._daq_system = DAQSystem(self._machines, self._daq)
         self._daq_system.start()
 
-        ds = DataSender()
-        for m in self._machines:
-            m.register_observer(ds)
+        # ds = DataSender()
+        # for m in self._machines:
+        #     m.register_observer(ds)
 
         icon = QIcon("icon.png")
         self._main_window = MainWindow(machines=self._machines)
@@ -51,6 +51,8 @@ class App:
             ]
         }
 
-    def exit_event(self): # TODO 에러 핸들링하기
+    def exit_event(self):
+        # TODO 에러 핸들링하기
+        self._tray.hide()
         self._daq_system.exit()
         sys.exit()
